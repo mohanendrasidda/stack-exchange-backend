@@ -7,6 +7,8 @@ const updatedanswer= require('./routes/index')
 const deleteanswerid= require('./routes/savedanswers')
 const PORT= process.env.PORT || 3000 
 const authrouter= require('./routes/auth.js')
+const { pageNotFound, apiNotFound } = require( './middlewares/not-found' );
+const errorHandler = require( './middlewares/error' );
 
 
 console.log(process.env.NODE.ENV)
@@ -25,6 +27,10 @@ app.use(updatedanswer)
 
 app.use(deleteanswerid)
 
+app.use( apiNotFound );
+
+// generic error handler
+app.use( errorHandler );
 
 
 
